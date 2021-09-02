@@ -1,6 +1,8 @@
 package Tests;
 
+import PageObjects.NewEgg;
 import PageObjects.main;
+import com.sun.webkit.WebPage;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -113,6 +115,34 @@ public class one {
       //Close webpage
       Twitch.closePage();
    }
+
+   @Test
+   public void searchNewEgg(){
+      //Initialize chromedriver
+      WebDriver driver = chromeDriver();
+
+      //Set string
+      String searchTerms = "phones";
+
+      //Go to NewEgg
+      openURL(driver,"https://www.newegg.com/");
+
+      //Enter text into search field
+      NewEgg newEgg = new NewEgg(driver);
+      newEgg.enterSearchText(searchTerms);
+      sleepPageTwoSeconds();
+
+      //Click search button
+      newEgg.clickSearch();
+      sleepPageTwoSeconds();
+
+      //Validation on search
+      String textOnPage = newEgg.getAllTextOnPage();
+      Assert.assertTrue(textOnPage.contains("Search Results: \"phones\""));
+      driver.close();
+
+   }
+
 
 
    /********************
