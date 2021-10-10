@@ -143,6 +143,41 @@ public class one {
 
    }
 
+   @Test
+   public void googleCalculator() {
+      //Initialize chromedriver
+      WebDriver driver = chromeDriver();
+
+      //Go to Google
+      openURL(driver, "www.google.com");
+
+      //Search calculator
+      main Google = new main(driver);
+      Google.googleSearchFor("calculator");
+
+      //Search calculator click
+      Google.googleSearchClick();
+
+      //Click number seven
+      Google.googleClickSeven();
+
+      //Click multiply sign
+      Google.googleClickMultiply();
+
+      //Click number three
+      Google.googleClickThree();
+
+      //Click equals sign
+      Google.googleClickEquals();
+
+      //Find result
+      String textOnPage = Google.getAllTextOnPage();
+      Assert.assertTrue(textOnPage.contains("21"));
+
+      driver.close();
+
+   }
+
 
 
    /********************
